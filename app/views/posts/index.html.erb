@@ -8,12 +8,17 @@
   </tr>
 
   <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.body %></td>
-      <td><%= post.user.email %></td>
-    </tr>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.body %></td>
+
+    <% if user_signed_in? -%>
+    <td><%= post.user.email %></td>
+    <% end %>
+
+  </tr>
   <% end %>
 </table>
 
 <%= link_to "New Post ",  new_post_path %>
+<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
